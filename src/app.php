@@ -1,37 +1,12 @@
 <?php
- 
+
 use Symfony\Component\Routing;
- 
+use Symfony\Component\HttpFoundation\Response;
+
 $routes = new Routing\RouteCollection();
- 
-//// Example of using a function name for the controller along with parameters.
-//$routes->add('hello', new Routing\Route('/hello/{name}', array(
-//  'name' => 'World',
-//  '_controller' => 'render_template',
-//)));
-
-//$routes->add('hello', new Routing\Route('/hello/{name}', array(
-//  'name' => 'World',
-//  '_controller' => function ($request) {
-//    return render_template($request);
-//  }
-//)));
-
-// Example of setting attributes and headers in an anonymous controller function.
-$routes->add('hello', new Routing\Route('/hello/{name}', array(
-  'name' => 'World',
-  '_controller' => function ($request) {
-    // $adjective will be available in the template
-    $request->attributes->set('adjective', 'amazing');
-    $response = render_template($request);
-    // Change a header
-    $response->headers->set('Content-Type', 'text/plain');
-    return $response;
-  }
+$routes->add('leap_year', new Routing\Route('/is_leap_year/{year}', array(
+  'year' => null,
+  '_controller' => 'Calendar\\Controller\\LeapYearController::indexAction',
 )));
 
-$routes->add('logon', new Routing\Route('/logon', array('_controller' => 'render_template')));
-
-$routes->add('bye', new Routing\Route('/bye', array('_controller' => 'render_template')));
- 
 return $routes;
