@@ -1,0 +1,53 @@
+# Symfony2
+/web/bundles/
+/app/bootstrap.php.cache
+/app/cache/*
+/app/logs/*
+/build/
+/vendor/
+/bin/
+/composer.phar
+composer.lock
+
+# Symfony2 configuration files
+app/config/parameters.ini
+app/config/parameters.yml
+
+# Eclipse
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# PDT-specific
+.buildpath
+
+# Netbeans
+nbproject/private/
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# PHPStorm
+.idea/
+
+# Prullaria
+favicon-16x16.png
+favicon-32x32.png
+favicon-96x96.png
+favicon.ico
+favicon.png
