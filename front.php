@@ -17,31 +17,9 @@ $matcher = new Routing\Matcher\UrlMatcher($routes, $context);
 $resolver = new HttpKernel\Controller\ControllerResolver();
 
 $dispatcher = new EventDispatcher();
+$dispatcher->addListener('response', array(new Simplex\ContentLengthListener(), 'onResponse'), -255);
+$dispatcher->addListener('response', array(new Simplex\GoogleListener(), 'onResponse'));
 
-// first listener
-$dispatcher->addListener('response', function (Simplex\ResponseEvent $event) {
-  /* @var $response Response */
-  $response = $event->getResponse();
-
-  if ($response->isRedirection() 
-      || ($response->headers->has('Content-Type') && false === strpos($response->headers->get('Content-Type'), 'html')) 
-      || 'html' !== $event->getRequest()->getRequestFormat()) {
-    return;
-  }
-
-  $response->setContent($response->getContent() . 'GA CODE');
-});
-
-// This listener has a low priority of -255, so it will run last.
-$dispatcher->addListener('response', function (Simplex\ResponseEvent $event) {
-  $response = $event->getResponse();
-  $headers = $response->headers;
- 
-  if (!$headers->has('Content-Length') && !$headers->has('Transfer-Encoding')) {
-    $headers->set('Content-Length', strlen($response->getContent()));
-  }
-}, -255);
- 
 $framework = new Simplex\Framework($dispatcher, $matcher, $resolver);
 $response = $framework->handle($request);
 
