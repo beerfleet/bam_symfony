@@ -2,6 +2,8 @@
 
 namespace Calendar\Model;
 
+use Exception;
+
 class LeapYear {
 
   protected $year;
