@@ -43,7 +43,7 @@ class FrameworkTest extends \PHPUnit_Framework_TestCase
   
   public function testControllerResponse()
   {
-    $matcher = $this->getMock('Symfony\Component\Routing\Matcher\UrlMatcherInterface');
+    $matcher = $this->createMock('Symfony\Component\Routing\Matcher\UrlMatcherInterface');
     $matcher
       ->expects($this->once())
       ->method('match')
