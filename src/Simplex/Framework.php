@@ -10,9 +10,9 @@ use Symfony\Component\HttpKernel\Controller\ControllerResolver;
 use Symfony\Component\Routing\Matcher\UrlMatcherInterface;
 use Symfony\Component\HttpKernel\Controller\ControllerResolverInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\HttpKernel\HttpKernelInterface;
 
-class Framework {
-
+class Framework implements HttpKernelInterface {
   protected $matcher;
   protected $resolver;
   protected $dispatcher;
@@ -23,7 +23,7 @@ class Framework {
     $this->dispatcher = $dispatcher;
   }
 
-  public function handle(Request $request) {
+  public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true) {
     try {
       $request->attributes->add($this->matcher->match($request->getPathInfo()));
 

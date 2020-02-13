@@ -1,5 +1,6 @@
 # Symfony2
 /web/bundles/
+/cache/
 /app/bootstrap.php.cache
 /app/cache/*
 /app/logs/*
