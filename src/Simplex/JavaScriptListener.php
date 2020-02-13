@@ -1,10 +1,22 @@
 <?php
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 namespace Simplex;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Simplex\ResponseEvent;
 
-class GoogleListener implements EventSubscriberInterface {
+/**
+ * Description of JavaScriptListener
+ *
+ * @author jvanbiervliet
+ */
+class JavaScriptListener implements EventSubscriberInterface {
 
   public static function getSubscribedEvents() {
     return array('response' => 'onResponse');
@@ -17,7 +29,7 @@ class GoogleListener implements EventSubscriberInterface {
       return;
     }
 
-    $response->setContent('<h1>GA CODE.</h1>' . $response->getContent());
+    $response->setContent($response->getContent() . "<script>alert('Google heeft gat cookies');</script>");
   }
 
 }
